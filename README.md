@@ -134,7 +134,8 @@ public class XXController {
 
 1. Se requiere que el API permita agregar un producto a una orden. Revise [acá](http://restcookbook.com/HTTP%20Methods/put-vs-post/) cómo se debe manejar el verbo PUT con este fin, y haga la implementación en el proyecto.
 
-2. Dados todos los recursos definidos anteriormente, y teniendo en cuenta que toda la aplicación funciona con una instancia compartida de 'ManejadorOrdenes', revise e indique:
+2. Teniendo en cuenta que el API podrá ser utilizado simultáneamente por muchos clientes, y que toda la aplicación funciona con una instancia compartida de 'ManejadorOrdenes', revise e indique:
 
 	* Dentro de ManejadorOrdenes, existen elementos que podrían fallar con un manejo concurrente?
-	* Podrían presentarse condiciones de carrera?, cual sería la región crítica?, a qué verbos REST estaría asociada dicha región?
+	* Podrían presentarse condiciones de carrera?, cual sería la región crítica?, a qué verbos REST estaría asociada dicha región?. En  Solucione, si los hay, los elementos antes descritos, y en la raz
+	
