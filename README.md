@@ -117,6 +117,7 @@ public class XXController {
 	|hamburguesa|$8000|
 	|hamburguesa|$8000|		
 	|postre de natas|$5000|
+	|gaseosa light 350|$1000|
 
 
 
@@ -128,3 +129,12 @@ public class XXController {
 4. Haga lo necesario para que ahora el API acepte peticiones al recurso '/ordenes/{idorden}/total, las cuales retornen el total de la cuenta de la orden {idorden}.
 
 5. Una vez hecho esto, rectifique que el esquema de inyección de dependencias funcione correctamente. Cambie la configuración para que ahora se use el CalculadorCuenta con IVA, con el VerificadorIVARegimen2013. Compruebe que para las ordenes 0 y 1 se calcule el total de forma diferente.
+
+###Parte IV
+
+1. Se requiere que el API permita agregar un producto a una orden. Revise [acá](http://restcookbook.com/HTTP%20Methods/put-vs-post/) cómo se debe manejar el verbo PUT con este fin, y haga la implementación en el proyecto.
+
+2. Dados todos los recursos definidos anteriormente, y teniendo en cuenta que toda la aplicación funciona con una instancia compartida de 'ManejadorOrdenes', revise e indique:
+
+	* Dentro de ManejadorOrdenes, existen elementos que podrían fallar con un manejo concurrente?
+	* Podrían presentarse condiciones de carrera?, cual sería la región crítica?, a qué verbos REST estaría asociada dicha región?
