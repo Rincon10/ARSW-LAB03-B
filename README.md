@@ -109,7 +109,7 @@ public class XXController {
 	$ curl -i -X POST -HContent-Type:application/json -HAccept:application/json http://URL_del_recurso_ordenes -d '{ObjetoJSON}'
 	```	
 
-	Con lo anterior, registre una nueva orden:
+	Con lo anterior, registre una nueva orden (para 'diseñar' un objeto jSON, puede usar [esta herramienta](http://www.jsoneditoronline.org/)):
 
 
 	| Producto        | Precio           | 
