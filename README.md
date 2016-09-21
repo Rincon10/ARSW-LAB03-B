@@ -137,5 +137,5 @@ public class XXController {
 2. Teniendo en cuenta que el API podrá ser utilizado simultáneamente por muchos clientes, y que toda la aplicación funciona con una instancia compartida de 'ManejadorOrdenes', revise e indique:
 
 	* Dentro de ManejadorOrdenes, existen elementos que podrían fallar con un manejo concurrente?
-	* Podrían presentarse condiciones de carrera?, cual sería la región crítica?, a qué verbos REST estaría asociada dicha región?. En  Solucione, si los hay, los elementos antes descritos, y en la raz
+	* Podrían presentarse condiciones de carrera?, cual sería la región crítica?, a qué verbos REST estaría asociada dicha región?. Solucione, si los hay, los problemas asociados a los elementos antes descritos. Responda a las preguntas antes planteadas en el archivo RACE\_COND\_ANALYSIS.txt.
 	
