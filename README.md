@@ -139,3 +139,13 @@ public class XXController {
 	* Dentro de ManejadorOrdenes, existen elementos que podrían fallar con un manejo concurrente?
 	* Podrían presentarse condiciones de carrera?, cual sería la región crítica?, a qué verbos REST estaría asociada dicha región?. Solucione, si los hay, los problemas asociados a los elementos antes descritos. Responda a las preguntas antes planteadas en el archivo RACE\_COND\_ANALYSIS.txt.
 	
+
+### Criterios de evaluación
+
+1. Se pueden crear nuevas órdenes, mediante POST.
+2. Se puede calcular el valor de la orden, mediante GET.
+3. La aplicación permite cambiar la estrategia de cálculo del valor de la orden (cambiando las anotaciones @Service).
+4. La aplicación permite actualizar las órdenes mediante PUT.
+5. En análisis de las posibles condiciones de carrera es consistente.
+
+
