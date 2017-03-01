@@ -45,7 +45,7 @@ Por defecto, el manejador de órdenes tiene dos órdenes registradas para las me
 ### Parte I
 
 1. Configure su aplicación para que ofrezca el recurso "/orders", de manera que cuando se le haga una petición GET, retorne -en formato jSON- el conjunto de todas las órdenes. Para esto:
-	* Modifique la clase CuentaResourceController teniendo en cuenta el siguiente ejemplo de controlador REST hecho con SpringMVC/SpringBoot:
+	* Modifique la clase OrdersAPIController teniendo en cuenta el siguiente ejemplo de controlador REST hecho con SpringMVC/SpringBoot:
 
 	```java
 @RestController
