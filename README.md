@@ -83,7 +83,7 @@ public class XXController {
 
 1.  Agregue el manejo de peticiones POST (creación de nuevas ordenes), de manera que un cliente http pueda registrar una nueva orden haciendo una petición POST al recurso ‘ordenes’, y enviando como contenido de la petición todo el detalle de dicho recurso a través de un documento jSON. Para esto, tenga en cuenta el siguiente ejemplo, que considera -por consistencia con el protocolo HTTP- el manejo de códigos de estados HTTP (en caso de éxito o error):
 
-	```	
+	```	java
 @RequestMapping(method = RequestMethod.POST)	
 	public ResponseEntity<?> manejadorPostRecursoXX(@RequestBody TipoXX o){
         try {
