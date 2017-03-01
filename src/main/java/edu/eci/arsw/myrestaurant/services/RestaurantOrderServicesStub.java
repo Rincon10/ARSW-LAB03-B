@@ -102,8 +102,8 @@ public class RestaurantOrderServicesStub implements RestaurantOrderServices {
         tableOrders.put(1, o);
 
         Order o2 = new Order(3);
-        o.addDish("HAMBURGER", 2);
-        o.addDish("COKE", 2);
+        o2.addDish("HAMBURGER", 2);
+        o2.addDish("COKE", 2);
 
         tableOrders.put(3, o2);
     }
