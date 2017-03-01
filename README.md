@@ -9,42 +9,42 @@ En este proyecto se va a construír un API REST que permita calcular el valor to
 
 Este API será soportado por el siguiente modelo de clases, el cual considera el principio de inversión de dependencias, y asume el uso de Inyección de dependencias:
 
-![](img/BeansModel.png)
+![](img/ClassDiagram.png)
 
 
 El anterior modelo considera, por ahora, los siguientes casos (la aplicación podrá configurarse de acuerdo con el restaurante donde sea usado):
 
 * En algunos restaurantes los precios de los platos ya incluyen el IVA (CalculadorBasicoCuentas).
-* En otros restaurantes los precios ya incluyen el IVA, pero sí cobran el servicio del 10% sobre el total de la factura (CalculadorCuentaConPropina).
 * En muchos otros se cobra el IVA, pero de dos maneras diferentes:
-	* 16% estándar sobre todos los platos (CalcularodCuentaConIVA + VerificadorIVAEstandar).
-	* Aplicando un IVA diferencial al tipo de plato, previendo el régimen especial de impuestos a las comidas del el año 2013, donde las bebidas gaseosas tendrán un gravamen de sólo el 10%, y los demás platos del 17% (CalcularodCuentaConIVA + VerificadorIVARegimen2013).
+	* 16% estándar sobre todos los productos (CalcularodCuentaConIVA + VerificadorIVAEstandar).
+	* Con la reforma tributaria de 2016, aplicando un IVA diferencial al tipo de producto: 16% para las bebidas y 19% para los platos.
 
 
-Por defecto, el manejador de órdenes tiene dos órdenes registradas:
+Por defecto, el manejador de órdenes tiene dos órdenes registradas para las mesas #1 y #3:
 
-* Orden 0:
 
-	| Producto        | Precio           | 
-| ------------- |:-------------:| 
-|pizza|$7500|
-|gaseosa|$3900|
-|hamburguesa|$8000|
-|gaseosa 350|$200|
+* Orden Mesa 1:
 
-* Orden 1:
+	| Producto      | Cantidad | Precio Unitario          | 
+| ------------- | ----- |:-------------:| 
+|PIZZA|3|$10000|
+|HOTDOG|1|$3000|
+|COKE|4|$1300|
 
-	| Producto        | Precio           | 
-| ------------- |:-------------:| 		
-|pizza|$7500|
-|pizza|$7500|
-|pizza|$7500|
-|gaseosa litro|$4000|
+
+* Orden Mesa 3:
+
+	| Producto      | Cantidad | Precio  Unitario         | 
+| ------------- | ----- |:-------------:| 
+|HAMBURGER|2|$12300|
+|COKE|2|$1300|
+
+
 
 
 ### Parte I
 
-1. Configure su aplicación para que ofrezca el recurso "/ordenes", de manera que cuando se le haga una petición GET, retorne -en formato jSON- el listado de todas las órdenes. Para esto:
+1. Configure su aplicación para que ofrezca el recurso "/ordenes", de manera que cuando se le haga una petición GET, retorne -en formato jSON- el conjunto de todas las órdenes. Para esto:
 	* Modifique la clase CuentaResourceController teniendo en cuenta el siguiente ejemplo de controlador REST hecho con SpringMVC/SpringBoot:
 
 	```java
@@ -65,7 +65,7 @@ public class XXController {
 }
 
 	```
-	* Haga que en esta misma clase se inyecte el bean de tipo ManejadorOrdenes, y que a éste -a su vez-, se le inyecte el bean CalculadorBasicoCuentas. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) las secciones 7.9.2 y 7.10.3, respecto a cómo declarar Beans, y cómo definir la inyección de dependencias entre éstos, mediante anotaciones.
+	* Haga que en esta misma clase se inyecte el bean de tipo RestaurantOrderServices, y que a éste -a su vez-, se le inyecte el bean BasicBillCalculator. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html) las secciones 7.9.2 y 7.10.3, respecto a cómo declarar Beans, y cómo definir la inyección de dependencias entre éstos, mediante anotaciones.
 
 2. Verifique el funcionamiento de a aplicación lanzando la aplicación con maven:
 
@@ -76,7 +76,7 @@ public class XXController {
 	Y luego enviando una petición GET a: http://localhost:8080/ordenes. Rectifique que, como respuesta, se obtenga un objeto jSON con una lista que contenga las dos órdenes disponibles por defecto.
 
 
-3. Modifique el controlador para que ahora, adicionalmente, acepte peticiones GET al recurso /orden/{idorden}, donde {idorden} es el número de una orden en particular. En este caso, la respuesta debe ser la orden indicada en formato jSON. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html), sección 22.3.2, el uso de @PathVariable. De nuevo, verifique que al hacer una petición GET -por ejemplo- a recurso http://localhost:8080/ordenes/0, se obtenga en formato jSON el detalle correspondiente.
+3. Modifique el controlador para que ahora, adicionalmente, acepte peticiones GET al recurso /orden/{idmesa}, donde {idmesa} es el número de una mesa en particular. En este caso, la respuesta debe ser la orden que corresponda a la mesa indicada en formato jSON, o un error 404 si la mesa no existe o no tiene una orden asociada. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html), sección 22.3.2, el uso de @PathVariable. De nuevo, verifique que al hacer una petición GET -por ejemplo- a recurso http://localhost:8080/ordenes/1, se obtenga en formato jSON el detalle correspondiente a la orden de la mesa 1.
 
 
 ###Parte II
