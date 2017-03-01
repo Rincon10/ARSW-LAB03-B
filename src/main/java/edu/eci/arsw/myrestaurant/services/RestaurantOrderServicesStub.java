@@ -1,13 +1,8 @@
 package edu.eci.arsw.myrestaurant.services;
 
-import java.util.LinkedList;
-import java.util.List;
 
 import edu.eci.arsw.myrestaurant.model.Order;
 import edu.eci.arsw.myrestaurant.model.RestaurantProduct;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import edu.eci.arsw.myrestaurant.beans.BillCalculator;
 import edu.eci.arsw.myrestaurant.beans.BillCalculator;
 import edu.eci.arsw.myrestaurant.model.ProductType;
 import java.util.Map;
@@ -88,13 +83,11 @@ public class RestaurantOrderServicesStub implements RestaurantOrderServices {
     private static final Map<String, RestaurantProduct> productsMap;
 
     private static final Map<Integer, Order> tableOrders;
-
-    private static final List<Integer> tables;
+    
 
     static {
         productsMap = new ConcurrentHashMap<>();
-        tableOrders = new ConcurrentHashMap<>();
-        tables = new LinkedList<>();
+        tableOrders = new ConcurrentHashMap<>();        
         productsMap.put("PIZZA", new RestaurantProduct("PIZZA", 10000, ProductType.DISH));
         productsMap.put("HOTDOG", new RestaurantProduct("HOTDOG", 3000, ProductType.DISH));
         productsMap.put("COKE", new RestaurantProduct("COKE", 1300, ProductType.DRINK));

@@ -14,7 +14,7 @@ Este API será soportado por el siguiente modelo de clases, el cual considera el
 
 El anterior modelo considera, por ahora, los siguientes casos (la aplicación podrá configurarse de acuerdo con el restaurante donde sea usado):
 
-* En algunos restaurantes los precios de los platos ya incluyen el IVA (CalculadorBasicoCuentas).
+* En algunos restaurantes -ilegales- los precios de los platos NO tienen gravamen alguno (BasicBillCalculator).
 * En muchos otros se cobra el IVA, pero de dos maneras diferentes:
 	* 16% estándar sobre todos los productos (CalcularodCuentaConIVA + VerificadorIVAEstandar).
 	* Con la reforma tributaria de 2016, aplicando un IVA diferencial al tipo de producto: 16% para las bebidas y 19% para los platos.
@@ -44,7 +44,7 @@ Por defecto, el manejador de órdenes tiene dos órdenes registradas para las me
 
 ### Parte I
 
-1. Configure su aplicación para que ofrezca el recurso "/ordenes", de manera que cuando se le haga una petición GET, retorne -en formato jSON- el conjunto de todas las órdenes. Para esto:
+1. Configure su aplicación para que ofrezca el recurso "/orders", de manera que cuando se le haga una petición GET, retorne -en formato jSON- el conjunto de todas las órdenes. Para esto:
 	* Modifique la clase CuentaResourceController teniendo en cuenta el siguiente ejemplo de controlador REST hecho con SpringMVC/SpringBoot:
 
 	```java
@@ -73,7 +73,7 @@ public class XXController {
 	$ mvn spring-boot:run
 	
 	```
-	Y luego enviando una petición GET a: http://localhost:8080/ordenes. Rectifique que, como respuesta, se obtenga un objeto jSON con una lista que contenga las dos órdenes disponibles por defecto.
+	Y luego enviando una petición GET a: http://localhost:8080/orders. Rectifique que, como respuesta, se obtenga un objeto jSON con una lista que contenga las dos órdenes disponibles por defecto.
 
 
 3. Modifique el controlador para que ahora, adicionalmente, acepte peticiones GET al recurso /orden/{idmesa}, donde {idmesa} es el número de una mesa en particular. En este caso, la respuesta debe ser la orden que corresponda a la mesa indicada en formato jSON, o un error 404 si la mesa no existe o no tiene una orden asociada. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html), sección 22.3.2, el uso de @PathVariable. De nuevo, verifique que al hacer una petición GET -por ejemplo- a recurso http://localhost:8080/ordenes/1, se obtenga en formato jSON el detalle correspondiente a la orden de la mesa 1.
@@ -112,34 +112,30 @@ public class XXController {
 	Con lo anterior, registre una nueva orden (para 'diseñar' un objeto jSON, puede usar [esta herramienta](http://www.jsoneditoronline.org/)):
 
 
-	| Producto        | Precio           | 
-	| ------------- |:-------------:| 
-	|hamburguesa|$8000|
-	|hamburguesa|$8000|		
-	|postre de natas|$5000|
-	|gaseosa light 350|$1000|
+	| Producto      | Cantidad |
+| ------------- | ----- |
+|HAMBURGER|2|
+|PIZZA|3|$10000|
+|BEER|2|$2500|
+
+	Nota: puede basarse en el formato jSON mostrado en el navegador al consultar una orden con el método GET.
 
 
-
-3. Verifique qué identificador fue asignado al recurso anteriormente creado, y que el mismo se pueda obtener mediante una petición GET al recurso '/ordenes/{idorden}' correspondiente.
+3. Teniendo en cuenta el número de mesa asociado a la nueva orden, verifique que la misma se pueda obtener mediante una petición GET al recurso '/ordenes/{idmesa}' correspondiente.
 
 
 ###Parte III
 
-4. Haga lo necesario para que ahora el API acepte peticiones al recurso '/ordenes/{idorden}/total, las cuales retornen el total de la cuenta de la orden {idorden}.
+4. Haga lo necesario para que ahora el API acepte peticiones al recurso '/ordenes/{idmesa}/total, las cuales retornen el total de la cuenta de la orden {idorden}.
 
-5. Una vez hecho esto, rectifique que el esquema de inyección de dependencias funcione correctamente. Cambie la configuración para que ahora se use el CalculadorCuenta con IVA, con el VerificadorIVARegimen2013. Compruebe que para las ordenes 0 y 1 se calcule el total de forma diferente.
+5. Una vez hecho esto, rectifique que el esquema de inyección de dependencias funcione correctamente. Cambie la configuración para que ahora se use BillWithTaxesCalculator, con TaxesCalculator2016ColTributaryReform. Compruebe que para las mesas 1 y 3 se calcule el total de forma diferente.
 
 ###Parte IV
 
 1. Se requiere que el API permita agregar un producto a una orden. Revise [acá](http://restcookbook.com/HTTP%20Methods/put-vs-post/) cómo se debe manejar el verbo PUT con este fin, y haga la implementación en el proyecto.
+2. Se requiere que el API permita cancelar la orden de una mesa. Agregue esta funcionalidad teniendo en cuenta que de acuerdo con el estilo REST, ésto se debería poder hacer usando el verbo DELETE en el recurso /ordenes/{idmesa}.
 
-2. Teniendo en cuenta que el API podrá ser utilizado simultáneamente por muchos clientes, y que toda la aplicación funciona con una instancia compartida de 'ManejadorOrdenes', revise e indique:
-
-	* Dentro de ManejadorOrdenes, existen elementos que podrían fallar con un manejo concurrente?
-	* Podrían presentarse condiciones de carrera?, cual sería la región crítica?, a qué verbos REST estaría asociada dicha región?. Solucione, si los hay, los problemas asociados a los elementos antes descritos. Responda a las preguntas antes planteadas en el archivo RACE\_COND\_ANALYSIS.txt.
 	
-
 ### Criterios de evaluación
 
 1. Se pueden crear nuevas órdenes, mediante POST.
