@@ -134,6 +134,10 @@ public class XXController {
 
 1. Se requiere que el API permita agregar un producto a una orden. Revise [acá](http://restcookbook.com/HTTP%20Methods/put-vs-post/) cómo se debe manejar el verbo PUT con este fin, y haga la implementación en el proyecto.
 2. Se requiere que el API permita cancelar la orden de una mesa. Agregue esta funcionalidad teniendo en cuenta que de acuerdo con el estilo REST, ésto se debería poder hacer usando el verbo DELETE en el recurso /ordenes/{idmesa}.
+3. Analice: qué error, derivado de una condición de carrera, se podría presentar con este API teniendo en cuenta que:
+	* En la configuración actual de la aplicación, que usa Tomcat como servidor de aplicaciones, se crea un hilo de ejecución para cada cliente que se conecte.
+	* Muchos clientes del API podrán consultar cuentas, consultar totales, modificar y cerrar cuentas concurrentemente.
+Escriba su análisis en el archivo ANALISIS_CONCURRENCIA.txt
 
 	
 ### Criterios de evaluación
