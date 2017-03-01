@@ -76,7 +76,7 @@ public class XXController {
 	Y luego enviando una petición GET a: http://localhost:8080/orders. Rectifique que, como respuesta, se obtenga un objeto jSON con una lista que contenga las dos órdenes disponibles por defecto.
 
 
-3. Modifique el controlador para que ahora, adicionalmente, acepte peticiones GET al recurso /orden/{idmesa}, donde {idmesa} es el número de una mesa en particular. En este caso, la respuesta debe ser la orden que corresponda a la mesa indicada en formato jSON, o un error 404 si la mesa no existe o no tiene una orden asociada. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html), sección 22.3.2, el uso de @PathVariable. De nuevo, verifique que al hacer una petición GET -por ejemplo- a recurso http://localhost:8080/ordenes/1, se obtenga en formato jSON el detalle correspondiente a la orden de la mesa 1.
+3. Modifique el controlador para que ahora, adicionalmente, acepte peticiones GET al recurso /orden/{idmesa}, donde {idmesa} es el número de una mesa en particular. En este caso, la respuesta debe ser la orden que corresponda a la mesa indicada en formato jSON, o un error 404 si la mesa no existe o no tiene una orden asociada. Para esto, revise en [la documentación de Spring](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html), sección 22.3.2, el uso de @PathVariable. De nuevo, verifique que al hacer una petición GET -por ejemplo- a recurso http://localhost:8080/orders/1, se obtenga en formato jSON el detalle correspondiente a la orden de la mesa 1.
 
 
 ###Parte II
@@ -121,13 +121,13 @@ public class XXController {
 	Nota: puede basarse en el formato jSON mostrado en el navegador al consultar una orden con el método GET.
 
 
-3. Teniendo en cuenta el número de mesa asociado a la nueva orden, verifique que la misma se pueda obtener mediante una petición GET al recurso '/ordenes/{idmesa}' correspondiente.
+3. Teniendo en cuenta el número de mesa asociado a la nueva orden, verifique que la misma se pueda obtener mediante una petición GET al recurso '/orders/{idmesa}' correspondiente.
 
 
 ###Parte III
 
 
-4. Haga lo necesario para que ahora el API acepte peticiones al recurso '/ordenes/{idmesa}/total, las cuales retornen el total de la cuenta de la orden {idorden}.
+4. Haga lo necesario para que ahora el API acepte peticiones al recurso '/orders/{idmesa}/total, las cuales retornen el total de la cuenta de la orden {idorden}.
 
 5. Una vez hecho esto, rectifique que el esquema de inyección de dependencias funcione correctamente. Cambie la configuración para que ahora se use BillWithTaxesCalculator, con TaxesCalculator2016ColTributaryReform. Compruebe que para las mesas 1 y 3 se calcule el total de forma diferente.
 
@@ -140,7 +140,7 @@ public class XXController {
 ###Parte IV
 
 1. Se requiere que el API permita agregar un producto a una orden. Revise [acá](http://restcookbook.com/HTTP%20Methods/put-vs-post/) cómo se debe manejar el verbo PUT con este fin, y haga la implementación en el proyecto.
-2. Se requiere que el API permita cancelar la orden de una mesa. Agregue esta funcionalidad teniendo en cuenta que de acuerdo con el estilo REST, ésto se debería poder hacer usando el verbo DELETE en el recurso /ordenes/{idmesa}.
+2. Se requiere que el API permita cancelar la orden de una mesa. Agregue esta funcionalidad teniendo en cuenta que de acuerdo con el estilo REST, ésto se debería poder hacer usando el verbo DELETE en el recurso /orders/{idmesa}.
 3. Analice: qué error, derivado de una condición de carrera, se podría presentar con este API teniendo en cuenta que:
 	* En la configuración actual de la aplicación, que usa Tomcat como servidor de aplicaciones, se crea un hilo de ejecución para cada cliente que se conecte.
 	* Muchos clientes del API podrán consultar cuentas, consultar totales, modificar y cerrar cuentas concurrentemente.
