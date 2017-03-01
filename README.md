@@ -126,9 +126,16 @@ public class XXController {
 
 ###Parte III
 
+
 4. Haga lo necesario para que ahora el API acepte peticiones al recurso '/ordenes/{idmesa}/total, las cuales retornen el total de la cuenta de la orden {idorden}.
 
 5. Una vez hecho esto, rectifique que el esquema de inyección de dependencias funcione correctamente. Cambie la configuración para que ahora se use BillWithTaxesCalculator, con TaxesCalculator2016ColTributaryReform. Compruebe que para las mesas 1 y 3 se calcule el total de forma diferente.
+
+1. Se sabe que el desarrollo dirigido por pruebas es fundamental si se quiere lograr un producto robusto. En este caso, NO hay pruebas para los componentes de cálculo de costos. Revise la clase ApplicationServicesTest, la cual tiene las anotaciones necesarias para ejecutar pruebas en el contexto de Spring (es decir, inyectando dependencias). Sobre la misma:
+	* Use la anotación @Autowired para que a la prueba se le inyecte el bean de tipo RestaurantOrderServices.
+	* Suponiendo que la configuración de cálculo que se usará será: 
+	 BillWithTaxesCalculator + TaxesCalculator2016ColTributaryReform, agregue unos casos de prueba (a partir de unas clases de equivalencia) para probar el método   __calculateTableBill(int tableNumber)__. 
+
 
 ###Parte IV
 

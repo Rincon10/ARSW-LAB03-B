@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
-public class RestapidemoApplicationTests {
+public class ApplicationServicesTests {
 
     
     RestaurantOrderServicesStub ros;
@@ -24,16 +24,6 @@ public class RestapidemoApplicationTests {
     @Test
     public void contextLoads() throws OrderServicesException{
         
-        
-        try {
-            Order o=new Order(99);
-            o.addDish("PIZZA",3);
-            o.addDish("COKE",3);
-            ros.addNewOrderToTable(o);
-            System.out.println("$$"+ros.calculateTableBill(99));
-        } catch (OrderServicesException ex) {
-            Logger.getLogger(RestapidemoApplicationTests.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         
         
