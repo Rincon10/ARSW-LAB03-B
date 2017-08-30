@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.eci.pdsw.examples</groupId>
-	<artifactId>restapidemo</artifactId>
+	<artifactId>blueprints-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>RESTAURANT_API</name>
+	<name>Blueprints_API</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

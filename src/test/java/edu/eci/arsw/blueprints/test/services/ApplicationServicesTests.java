@@ -1,9 +1,5 @@
-package edu.eci.arsw.myrestaurant.test;
+package edu.eci.arsw.blueprints.test.services;
 
-import edu.eci.arsw.myrestaurant.beans.BillCalculator;
-import edu.eci.arsw.myrestaurant.model.Order;
-import edu.eci.arsw.myrestaurant.services.OrderServicesException;
-import edu.eci.arsw.myrestaurant.services.RestaurantOrderServicesStub;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;
@@ -18,11 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class ApplicationServicesTests {
 
     
-    RestaurantOrderServicesStub ros;
+    //RestaurantOrderServicesStub ros;
 
     
     @Test
-    public void contextLoads() throws OrderServicesException{
+    public void contextLoads() {
         
         
         

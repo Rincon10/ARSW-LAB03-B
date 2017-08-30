@@ -1,12 +1,12 @@
-package edu.eci.arsw.myrestaurant;
+package edu.eci.arsw.blueprintsapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestapidemoApplication {
+public class BlueprintsAPIApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestapidemoApplication.class, args);
+		SpringApplication.run(BlueprintsAPIApplication.class, args);
 	}
 }
