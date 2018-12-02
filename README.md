@@ -1,19 +1,16 @@
-## Escuela Colombiana de Ingeniería
+### Escuela Colombiana de Ingeniería
 
-## Arquitecturas de Software
+### Arquitecturas de Software
+## Laboratorio Componentes y conectores  Middleware- gestión de planos
+### Dependencias
+* [Ejercicio introductorio al manejo de Spring y la configuración basada en anotaciones](https://github.com/ARSW-ECI-beta/DIP_DI-SPRING_JAVA-GRAMMAR_CHECKER).
 
-# Componentes y conectores - Parte I.
-
-El ejercicio se debe traer terminado para el siguiente laboratorio (Parte II).
-
-#### Middleware- gestión de planos.
-
-
-## Antes de hacer este ejercicio, realice [el ejercicio introductorio al manejo de Spring y la configuración basada en anotaciones](https://github.com/ARSW-ECI/Spring_LightweightCont_Annotation-DI_Example).
-
+### Descripción
 En este ejercicio se va a construír un modelo de clases para la capa lógica de una aplicación que permita gestionar planos arquitectónicos de una prestigiosa compañia de diseño. 
 
 ![](img/ClassDiagram1.png)
+
+#### Middleware- gestión de planos.
 
 1. Configure la aplicación para que funcione bajo un esquema de inyección de dependencias, tal como se muestra en el diagrama anterior.
 
