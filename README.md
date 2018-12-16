@@ -10,7 +10,7 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 
 ![](img/ClassDiagram1.png)
 
-#### Middleware- gestión de planos.
+### Parte I.
 
 1. Configure la aplicación para que funcione bajo un esquema de inyección de dependencias, tal como se muestra en el diagrama anterior.
 
