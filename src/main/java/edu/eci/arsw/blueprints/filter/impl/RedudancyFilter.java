@@ -31,7 +31,9 @@ public class RedudancyFilter implements Filter {
                 filteredList.add(currentPoint);
             }
         }
-        filteredList.add(points.get(size-1));
+        if ( size != 0 ) {
+            filteredList.add(points.get(size-1));
+        }
         blueprint.setPoints(filteredList);
         return blueprint;
     }

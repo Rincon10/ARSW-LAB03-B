@@ -1,23 +1,22 @@
 package edu.eci.arsw.blueprints;
 
 import edu.eci.arsw.blueprints.model.Blueprint;
+import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
+import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootApplication
-public class Main implements CommandLineRunner {
-    @Autowired
-    BlueprintsServices bps;
+public class Main  {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
-    }
+    static BlueprintsServices bps;
 
-    @Override
-    public void run(String... arg0) throws Exception {
+    public static void main(String[] args) throws BlueprintPersistenceException, BlueprintNotFoundException {
+        ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
+        bps =ac.getBean(BlueprintsServices.class);
+
         int times = 5;
         String author = "Juan";
         System.out.println("Añadiendo "+times+" Planos asociados al autor"+ author);
@@ -27,5 +26,7 @@ public class Main implements CommandLineRunner {
         System.out.println("Se añadieron " + bps.getBlueprintsByAuthor(author).size() +" Planos del autor "+ author);
         System.out.println("Consultando plano Airetupal0 del  autor "+author);
         System.out.println("El plano encontrado es"+ bps.getBlueprint(author,"Airetupal0"));
+
     }
+
 }
