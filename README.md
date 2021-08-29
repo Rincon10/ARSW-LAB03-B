@@ -162,9 +162,15 @@ En este ejercicio se va a construír un modelo de clases para la capa lógica de
 	* (A) Filtrado de redundancias: suprime del plano los puntos consecutivos que sean repetidos.
 	* (B) Filtrado de submuestreo: suprime 1 de cada 2 puntos del plano, de manera intercalada.
 
-5. Agrege las pruebas correspondientes a cada uno de estos filtros, y pruebe su funcionamiento en el programa de prueba, comprobando que sólo cambiando la posición de las anotaciones -sin cambiar nada más-, el programa retorne los planos filtrados de la manera (A) o de la manera (B). 
+5. Agrege las pruebas correspondientes a cada uno de estos filtros, y pruebe su funcionamiento en el programa de prueba, comprobando que sólo cambiando la posición de las anotaciones -sin cambiar nada más-, el programa retorne los planos filtrados de la manera (A) o de la manera (B).
+
+Ejecución de pruebas 
+<br>
+        <img src="img/testParteI-5.png" alt="testI-5" >
+<br>
 
 ### Referencias 
 * Spring  [online] Available at: <https://www.arquitecturajava.com/spring-qualifier-utilizando-autowired/> [Accessed 28 August 2021].
 * Execution SpringBoot [online] Available at: <https://www.baeldung.com/spring-boot-run-maven-vs-executable-jar> [Accessed 28 August 2021].
 * Notaciones Spring  [online] Available at: <http://www.jtech.ua.es/j2ee/publico/spring-2012-13/sesion01-apuntes.html#Uso+de+anotaciones+Spring> [Accessed 28 August 2021].
+* Submuestreo [online] Available at: <https://www.youtube.com/watch?v=st-SvsxhbUg> [Accessed 29 August 2021].
