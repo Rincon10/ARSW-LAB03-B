@@ -37,7 +37,12 @@ public class Point {
     public void setY(int y) {
         this.y = y;
     }
-    
-    
-    
+
+    public boolean equals(Point point) {
+        if (point == null) {
+            return false;
+        }
+
+        return ((this.getX() == point.getX( )) && (this.getY() == point.getY( )));
+    }
 }

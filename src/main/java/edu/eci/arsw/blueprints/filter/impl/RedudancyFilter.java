@@ -23,15 +23,15 @@ public class RedudancyFilter implements Filter {
     public Blueprint bluePrintFilter(Blueprint blueprint) {
         List<Point> points = blueprint.getPoints();
         List<Point> filteredList = new ArrayList<>();
-
-        for( int index = 0; index < points.size() - 1; index++ ){
+        int size = points.size();
+        for( int index = 0; index < size - 1; index++ ){
             Point currentPoint = points.get(index);
             Point nextPoint = points.get(index+1);
-
             if( !currentPoint.equals(nextPoint) ){
                 filteredList.add(currentPoint);
             }
         }
+        filteredList.add(points.get(size-1));
         blueprint.setPoints(filteredList);
         return blueprint;
     }
