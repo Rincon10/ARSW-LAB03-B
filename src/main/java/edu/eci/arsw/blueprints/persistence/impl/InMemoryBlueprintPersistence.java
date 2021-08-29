@@ -10,21 +10,26 @@ import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import java.util.*;
 
 /**
  *
  * @author hcadavid
  */
+
+@Component
+@Qualifier("InMemory")
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
-    private final Map<Tuple<String,String>,Blueprint> blueprints=new HashMap<>();
+    private final Map<Tuple<String,String>,Blueprint> blueprints = new HashMap<>();
 
     public InMemoryBlueprintPersistence() {
         //load stub data
-        Point[] pts=new Point[]{new Point(140, 140),new Point(115, 115)};
-        Blueprint bp=new Blueprint("_authorname_", "_bpname_ ",pts);
+        Point[] pts = new Point[]{new Point(140, 140),new Point(115, 115)};
+        Blueprint bp = new Blueprint("_authorname_", "_bpname_ ",pts);
         blueprints.put(new Tuple<>(bp.getAuthor(),bp.getName()), bp);
         
     }    
@@ -36,14 +41,28 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         }
         else{
             blueprints.put(new Tuple<>(bp.getAuthor(),bp.getName()), bp);
-        }        
+        }
     }
 
     @Override
     public Blueprint getBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
-        return blueprints.get(new Tuple<>(author, bprintname));
+        // Se lanza una excepcion en caso que el author o bprintname no exista
+        Optional<Blueprint> optionalBlueprint = Optional.ofNullable(blueprints.get(new Tuple<>(author, bprintname)));
+        optionalBlueprint.orElseThrow( () -> new BlueprintNotFoundException("No encontrado") );
+
+        return optionalBlueprint.get();
     }
 
-    
-    
+    @Override
+    public Set<Blueprint> getBlueprintByAuthor(String author) throws BlueprintPersistenceException {
+        Set<Blueprint> r = new HashSet<>();
+        int cont = 0;
+        for (Tuple<String, String> k : blueprints.keySet()){
+            if (k.o1.equals(author)){
+                r.add(blueprints.get(k));
+                //System.out.println("El plano " + k.o2 + " es de la autoría de " + k.o1);
+            }
+        }
+        return r;
+    }
 }
