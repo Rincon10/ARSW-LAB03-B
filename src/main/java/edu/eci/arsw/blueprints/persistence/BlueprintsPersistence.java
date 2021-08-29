@@ -43,4 +43,12 @@ public interface BlueprintsPersistence {
      */
     public Set<Blueprint> getBlueprintByAuthor (String author) throws BlueprintPersistenceException;
 
+    /**
+     *
+     * @return all the blueprints created
+     * @throws BlueprintPersistenceException
+     */
+    public Set<Blueprint> getAllBlueprints() throws BlueprintPersistenceException;
+
+
 }

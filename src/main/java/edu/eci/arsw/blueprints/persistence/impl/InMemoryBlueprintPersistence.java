@@ -56,13 +56,20 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
     @Override
     public Set<Blueprint> getBlueprintByAuthor(String author) throws BlueprintPersistenceException {
         Set<Blueprint> r = new HashSet<>();
-        int cont = 0;
+
         for (Tuple<String, String> k : blueprints.keySet()){
             if (k.o1.equals(author)){
                 r.add(blueprints.get(k));
                 //System.out.println("El plano " + k.o2 + " es de la autoría de " + k.o1);
             }
         }
+
+
         return r;
+    }
+
+    @Override
+    public Set<Blueprint> getAllBlueprints() throws BlueprintPersistenceException {
+        return (Set<Blueprint>) blueprints;
     }
 }
