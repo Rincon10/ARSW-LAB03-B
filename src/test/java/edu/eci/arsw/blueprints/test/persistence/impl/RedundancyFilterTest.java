@@ -2,17 +2,13 @@ package edu.eci.arsw.blueprints.test.persistence.impl;
 
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
-import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
-import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-
 import java.util.Set;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -23,7 +19,7 @@ import static org.junit.Assert.fail;
  */
 
 @Component
-public class BluePrintsServicesTest {
+public class RedundancyFilterTest {
     public BlueprintsServices services;
 
     @Before
@@ -59,7 +55,6 @@ public class BluePrintsServicesTest {
 
             services.addNewBlueprint(bp1);
             services.addNewBlueprint(bp2);
-
 
             Set<Blueprint> blueprints = services.getBlueprintsByAuthor("john");
             blueprints.forEach( blueprint -> {

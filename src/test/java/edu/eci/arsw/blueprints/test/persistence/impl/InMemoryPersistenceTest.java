@@ -14,6 +14,8 @@ import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import edu.eci.arsw.blueprints.services.BlueprintsServices;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -113,7 +115,7 @@ public class InMemoryPersistenceTest {
     }
 
     @Test
-    public void deberiaBuscarPorAutor() {
+    public void deberiaBuscarPorAutorBprints() {
         InMemoryBlueprintPersistence ibpp = new InMemoryBlueprintPersistence();
         Point[] pts = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp = new Blueprint("john", "thepaint", pts);
@@ -133,10 +135,4 @@ public class InMemoryPersistenceTest {
             fail("Fallo que no deberia de activarse");
         }
     }
-
-
-
-
-
-
-    }
+}
